@@ -1,71 +1,78 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Halaman dengan Foto dan Menu</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f9f9f9;
-    }
-
-   
-    .navbar {
-      background-color: #333;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-    }
-
-    .navbar a {
-      color: white;
-      padding: 14px 20px;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.3s;
-    }
-
-    .navbar a:hover {
-      background-color: #575757;
-    }
-
-   
-    .content {
-      padding: 40px 20px;
-    }
-
-    .foto-container img {
-      max-width: 100%;
-      height: auto;
-      width: 300px;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-
-  
-  <div class="navbar">
-    <a href="index.html">Home</a>
-    <a href="barang.html">Barang</a>
-    <a href="penjualan.html">Penjualan</a>
-    <a href="register.html">Register</a>
-    <a href="contact.html">Contact</a>
-    <a href="about.html">About</a>
-  </div>
-
- 
-  <div class="content">
-    <h2>Selamat Datang!</h2>
-    <div class="foto-container">
-      <img src="project.png" width="400" height="500" alt="Foto Tengah">
+  <div class="container">
+    <div class="login-wrapper">
       
+      
+      <div class="login-image">
+        <img src="orang.png" alt="Gambar Login" />
+      </div>
+
+   
+      <div class="login-form">
+        <h2>Welcome Back 👋</h2>
+        <p>Login untuk mengakses halaman utama</p>
+        <form id="loginForm" autocomplete="off">
+          <div class="input-group">
+            <input type="email" id="email" name="email" required />
+            <label for="email">Email</label>
+            <span class="material-icons">mail</span>
+          </div>
+
+          <div class="input-group">
+            <input type="password" id="password" name="password" required />
+            <label for="password">Password</label>
+            <span class="material-icons toggle-icon" onclick="togglePassword()">visibility</span>
+          </div>
+
+          <button type="submit">Login</button>
+          <p id="message"></p>
+        </form>
+      </div>
+
     </div>
   </div>
 
+  <script>
+    function togglePassword() {
+      const pwField = document.getElementById("password");
+      const icon = document.querySelector(".toggle-icon");
+
+      if (pwField.type === "password") {
+        pwField.type = "text";
+        icon.textContent = "visibility_off";
+      } else {
+        pwField.type = "password";
+        icon.textContent = "visibility";
+      }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const message = document.getElementById('message');
+
+      if (email === "admin@example.com" && password === "admin123") {
+        message.textContent = "Login berhasil! Mengarahkan...";
+        message.style.color = "lightgreen";
+
+        setTimeout(() => {
+          window.location.href = "home.html";
+        }, 1000);
+      } else {
+        message.textContent = "Email atau password salah!";
+        message.style.color = "#ff7675";
+      }
+    });
+  </script>
 </body>
 </html>
